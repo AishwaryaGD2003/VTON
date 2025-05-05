@@ -22,12 +22,24 @@ clothing_images = {
     "shirt3": "static/shirts/shirt3.png",
     "shirt4": "static/shirts/shirt4.png",
     "shirt5": "static/shirts/shirt5.png",
-    "shirt6": "static/shirts/shirt6.jpg",
+    "shirt6": "static/shirts/shirt6.png",
+    "shirt7": "static/shirts/shirt7.png",
+    "shirt8": "static/shirts/shirt8.png",
+    "shirt9": "static/shirts/shirt9.png",
+    "shirt10": "static/shirts/shirt10.png",
+    "shirt11": "static/shirts/shirt11.png",
+    "shirt12": "static/shirts/shirt12.png",
+    "shirt13":"static/shirts/shirt13.png",
+
+
     "dress1": "static/women/dress1.png",
     "dress2": "static/women/dress2.png",
     "dress3": "static/women/dress3.png",
     "dress4": "static/women/dress4.png",
-    "dress5": "static/women/dress5.png"
+    "dress5": "static/women/dress5.png",
+    "dress6": "static/women/dress6.png",
+    "dress7": "static/women/dress7.png",
+
 }
 
 # Size scaling factors and button positions

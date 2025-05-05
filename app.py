@@ -6,14 +6,18 @@ app = Flask(__name__, static_url_path='/static', static_folder='static')  # Expl
 shirts = {
     "shirt1": {"name": "Classic White Shirt", "image": "shirt1.png", "price": "1000/-"},
     "shirt2": {"name": "Blue Casual Shirt", "image": "shirt2.png", "price": "1500/-"},
-    "shirt3": {"name": "Red Checkered Shirt", "image": "shirt3.png", "price": "2000/-"},
-    "shirt4": {"name": "Black Polo Shirt", "image": "shirt4.png", "price": "1800/-"},
+    "shirt3": {"name": "Green Polo Shirt", "image": "shirt3.png", "price": "2000/-"},
+    "shirt4": {"name": "Light Blue Polo Shirt", "image": "shirt4.png", "price": "1800/-"},
     "shirt5": {"name": "Green Striped Shirt", "image": "shirt5.png", "price": "1399/-"},
-    "shirt6": {"name": "Classic White Shirt", "image": "shirt6.jpg", "price": "1000/-"},
-    "shirt7": {"name": "Blue Casual Shirt", "image": "shirt2.png", "price": "1500/-"},
-    "shirt8": {"name": "Red Checkered Shirt", "image": "shirt3.png", "price": "2000/-"},
-    "shirt9": {"name": "Black Polo Shirt", "image": "shirt4.png", "price": "1800/-"},
-    "shirt10": {"name": "Green Striped Shirt", "image": "shirt5.png", "price": "1399/-"}
+    "shirt6": {"name": "Classic SkyBlue Shirt", "image": "shirt6.png", "price": "1000/-"},
+    "shirt7": {"name": "White Polo Shirt", "image": "shirt7.png", "price":"999"},
+    "shirt8": {"name": "Black Polo Shirt", "image": "shirt8.png", "price": "1800/-"},
+    "shirt9": {"name": "Black Striped Shirt", "image": "shirt9.png", "price": "1399/-"},
+    "shirt10": {"name": "Classic Skyblue Shirt", "image": "shirt10.png", "price": "1000/-"},
+    "shirt11": {"name": "Black Printed Shirt", "image": "shirt11.png", "price":"999"},
+    "shirt12": {"name": "Classic White Polo Shirt", "image": "shirt12.png", "price": "1000/-"},
+    "shirt13": {"name": "Blue Polo Shirt", "image": "shirt13.png", "price":"999"},
+
 }
 
 # Define women's dresses with prices
@@ -23,8 +27,8 @@ dresses = {
     "dress3": {"name": "White Party Dress", "image": "dress3.png", "price": "2200/-"},
     "dress4": {"name": "Bohemian Maxi Dress", "image": "dress4.png", "price": "1800/-"},
     "dress5": {"name": "Yellow Lace Dress", "image": "dress5.png", "price": "2300/-"}, 
-    "dress6": {"name": "Bohemian Maxi Dress", "image": "dress4.png", "price": "1800/-"},
-    "dress7": {"name": "Yellow Lace Dress", "image": "dress5.png", "price": "2300/-"}
+    "dress6": {"name": "Bohemian Maxi Dress", "image": "dress6.png", "price": "1800/-"},
+    "dress7": {"name": "Yellow Lace Dress", "image": "dress7.png", "price": "2300/-"}
 }
 
 @app.route('/')
