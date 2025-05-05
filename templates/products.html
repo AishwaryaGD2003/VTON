@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Virtual Fitting Room - Products</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="categories">
+        <h2>Men's Clothing</h2>
+        <div class="shirt-grid">
+            {% for shirt_id, details in shirts.items() %}
+            <div class="shirt-item">
+                <img src="{{ url_for('static', filename='shirts/' + details.image) }}" alt="{{ details.name }}">
+                <h3>{{ details.name }}</h3>
+                <p>Price: {{ details.price }}</p>
+                <form method="POST" action="{{ url_for('tryon') }}">
+                    <input type="hidden" name="shirt" value="{{ shirt_id }}">
+                    <button type="submit">Try On</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        <h2>Women's Dresses</h2>
+        <div class="shirt-grid">
+            {% for dress_id, details in dresses.items() %}
+            <div class="shirt-item">
+                <img src="{{ url_for('static', filename='women/' + details.image) }}" alt="{{ details.name }}">
+                <h3>{{ details.name }}</h3>
+                <p>Price: {{ details.price }}</p>
+                <form method="POST" action="{{ url_for('tryon') }}">
+                    <input type="hidden" name="shirt" value="{{ dress_id }}">
+                    <button type="submit">Try On</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <a href="{{ url_for('home') }}" class="back-button">Back to Home</a>
+    </div>
+    <footer>
+        © 2025 VTON Solutions. All rights reserved.
+    </footer>
+</body>
+</html>

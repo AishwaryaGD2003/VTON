@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Virtual Fitting Room - Contact Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="contact">
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="content">
+            <h1>Contact Us</h1>
+            <p>
+                Reach out to VTON Solutions for any inquiries, support, or feedback about our Virtual Fitting Room. We’re here to assist you!
+            </p>
+            <p><strong>Email:</strong> contact@vtonsolutions.com</p>
+            <p><strong>Phone:</strong> 0821 236 2777</p>
+            <p><strong>Address:</strong> #2, Shobhavana campus, AIET College, Mijar, Karnataka 574225</p>
+            <form action="/submit_contact" method="POST">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br>
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" required></textarea><br>
+                <button type="submit">Send</button>
+            </form>
+            <blockquote>"Style is a way to say who you are without having to speak." - Rachel Zoe</blockquote>
+        </div>
+    </div>
+    <footer>
+        © 2025 VTON Solutions. All rights reserved.
+    </footer>
+</body>
+</html>

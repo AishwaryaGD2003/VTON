@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Virtual Fitting Room</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="home">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to the Virtual Fitting Room</h1>
+            <p>Try on the latest fashion from the comfort of your home.</p>
+            <a href="#new-arrivals" class="cta-button">Shop New Arrivals</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <div class="categories">
+        <h2>Men's Clothing</h2>
+        <div class="shirt-grid">
+            {% for shirt_id, details in shirts.items() %}
+            <div class="shirt-item">
+                <img src="{{ url_for('static', filename='shirts/' + details.image) }}" alt="{{ details.name }}">
+                <h3>{{ details.name }}</h3>
+                <form method="POST" action="{{ url_for('tryon') }}">
+                    <input type="hidden" name="shirt" value="{{ shirt_id }}">
+                    <button type="submit">Try On</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        <h2>Women's Dresses</h2>
+        <div class="shirt-grid">
+            {% for dress_id, details in dresses.items() %}
+            <div class="shirt-item">
+                <img src="{{ url_for('static', filename='women/' + details.image) }}" alt="{{ details.name }}">
+                <h3>{{ details.name }}</h3>
+                <form method="POST" action="{{ url_for('tryon') }}">
+                    <input type="hidden" name="shirt" value="{{ dress_id }}">
+                    <button type="submit">Try On</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- New Arrivals Section -->
+    <section id="new-arrivals" class="new-arrivals">
+        <h2>New Arrivals</h2>
+        <div class="arrival-grid">
+            <div class="arrival-item">
+                <img src="{{ url_for('static', filename='images/new1.jpg') }}" alt="New Arrival 1">
+                <h3>Stylish Jacket</h3>
+                <p>Perfect for the winter season.</p>
+            </div>
+            <div class="arrival-item">
+                <img src="{{ url_for('static', filename='images/new2.jpg') }}" alt="New Arrival 2">
+                <h3>Elegant Dress</h3>
+                <p>Make a statement at any event.</p>
+            </div>
+            <div class="arrival-item">
+                <img src="{{ url_for('static', filename='images/new3.jpg') }}" alt="New Arrival 3">
+                <h3>Casual Shirt</h3>
+                <p>Comfort meets style.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <img src="{{ url_for('static', filename='images/step1.png') }}" alt="Step 1">
+                <h3>Choose Your Outfit</h3>
+                <p>Select from a wide range of clothing options.</p>
+            </div>
+            <div class="step">
+                <img src="{{ url_for('static', filename='images/step2.png') }}" alt="Step 2">
+                <h3>Try It On Virtually</h3>
+                <p>See how the clothes fit without leaving your home.</p>
+            </div>
+            <div class="step">
+                <img src="{{ url_for('static', filename='images/step3.png') }}" alt="Step 3">
+                <h3>Make Your Purchase</h3>
+                <p>Buy your favorite items with ease.</p>
+            </div>
+        </div>
+    </section>
+
+    <div>
+        <a href="{{ url_for('home') }}" class="back-button">Back to Home</a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 VTON Solutions. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Facebook"></a>
+                <a href="#" aria-label="Twitter"><img src="{{ url_for('static', filename='images/twitter.png') }}" alt="Twitter"></a>
+                <a href="#" aria-label="Instagram"><img src="{{ url_for('static', filename='images/instagram.png') }}" alt="Instagram"></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
