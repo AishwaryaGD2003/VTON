@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 
-app = Flask(__name__, static_url_path='/static', static_folder='static')  # Explicit static configuration
+app = Flask(__name__, static_url_path='/static', static_folder='static')
+app.secret_key = 'your_secret_key'  # Needed for session management
 
 # Define shirt options with prices
 shirts = {
@@ -17,7 +18,6 @@ shirts = {
     "shirt11": {"name": "Black Printed Shirt", "image": "shirt11.png", "price":"999"},
     "shirt12": {"name": "Classic White Polo Shirt", "image": "shirt12.png", "price": "1000/-"},
     "shirt13": {"name": "Blue Polo Shirt", "image": "shirt13.png", "price":"999"},
-
 }
 
 # Define women's dresses with prices
@@ -36,8 +36,6 @@ dresses = {
     "dress12": {"name":"Yellow Saree", "image":"dress12.png", "price":"2999/-"},
     "dress13": {"name":"Red Crop Top", "image":"dress13.png", "price":"999/-"},
     "dress14": {"name":"Blue Saree", "image":"dress14.png", "price":"2999/-"},
-    
-
 }
 
 @app.route('/')
@@ -59,5 +57,43 @@ def tryon():
         return render_template('tryon.html', shirt_id=clothing_id)
     return redirect(url_for('products'))
 
+@app.route('/login', methods=['GET'])
+def login_get():
+    return render_template('login.html', error=None)
+
+@app.route('/login', methods=['POST'])
+def login_post():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    # Simple hardcoded validation for demonstration
+    if email == 'admin@example.com' and password == 'password':
+        session['user'] = email
+        return redirect(url_for('home'))
+    else:
+        error = 'Invalid email or password'
+        return render_template('login.html', error=error)
+
+@app.route('/register', methods=['GET'])
+def register_get():
+    return render_template('register.html', error=None)
+
+@app.route('/register', methods=['POST'])
+def register():
+    fullname = request.form.get('fullname')
+    email = request.form.get('email')
+    password = request.form.get('password')
+    contact = request.form.get('contact')
+    address = request.form.get('address')
+
+    if not fullname or not email or not password:
+        error = "Full Name, Email, and Password are required."
+        return render_template('register.html', error=error)
+
+    # Simulate user registration logic here (e.g., save to database)
+    # For now, just store user info in session for demonstration
+    session['user'] = email
+
+    return redirect(url_for('home'))
+
 if __name__ == '__main__':
-    app.run(debug=True, port=5003)  # Runs on port 5000
+    app.run(debug=True, port=5003)
