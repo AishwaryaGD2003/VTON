@@ -35,7 +35,7 @@ nav a {
 
 /* Home Page Background */
 body.home {
-    background-image: url('/static/images/hero.jpg');
+    background-image: url('/static/images/hero.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -166,6 +166,7 @@ footer {
 .back-button {
     display: inline-block;
     padding: 10px 20px;
+    margin-top: 25px;
     background-color: #3498db;
     color: white;
     text-decoration: none;
@@ -197,6 +198,7 @@ footer {
 
 .shirt-item {
     border: 1px solid #ddd;
+    border-radius: 20px;
     padding: 15px;
     text-align: center;
     display: flex;
@@ -216,8 +218,8 @@ footer {
 }
 
 .shirt-item img {
-    max-width: 100%;
-    height: auto;
+    max-width: 86%;
+    height: auto;   
     margin-bottom: 10px;
 }
 
@@ -261,4 +263,179 @@ form textarea {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* Hero Section */
+.hero {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-weight: 900;
+    color: rgb(174, 174, 151);
+    /* text-shadow: 2px 2px 8px rgba(0,0,0,0.7); */
+}
+
+.hero-content p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+}
+
+/* Features Section */
+.features {
+    background-color: #f9f9f9;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #5a3e99;
+}
+
+.feature-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.feature-item {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(90, 62, 153, 0.15);
+    padding: 30px;
+    max-width: 300px;
+    flex: 1 1 250px;
+}
+
+.feature-item h3 {
+    margin-bottom: 15px;
+    color: #7a4fff;
+}
+
+.feature-item p {
+    color: #333;
+    font-size: 1.1em;
+}
+
+/* How It Works Section */
+.how-it-works {
+    padding: 60px 20px;
+    background-color: #fff;
+    color: #5a3e99;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    text-align: left;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(90, 62, 153, 0.15);
+}
+
+.how-it-works h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.how-it-works ol {
+    font-size: 1.2em;
+    padding-left: 20px;
+}
+
+.how-it-works li {
+    margin-bottom: 15px;
+}
+
+/* Products Preview Section */
+.products-preview {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.products-preview h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #5a3e99;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(90, 62, 153, 0.15);
+    padding: 20px;
+    max-width: 250px;
+    flex: 1 1 200px;
+    text-align: center;
+}
+
+.product-item img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.product-item h3 {
+    margin-bottom: 10px;
+    color: #7a4fff;
+}
+
+.product-item p {
+    color: #333;
+    font-size: 1em;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 60px 20px;
+    background-color: #fff;
+    color: #5a3e99;
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.testimonials blockquote {
+    font-style: italic;
+    color: #6b4f99;
+    border-left: 4px solid #7a4fff;
+    padding-left: 15px;
+    margin: 20px auto;
+    font-size: 1.2em;
+    max-width: 700px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #5a3e99;
+}
+
+.footer-link {
+    color: #5a3e99;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
 }

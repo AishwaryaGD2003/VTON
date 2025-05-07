@@ -13,4 +13,90 @@
             <li><a href="/contact">Contact Us</a></li>
         </ul>
     </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Experience the Future of Fashion with Virtual Try-On</h1>
+            <!-- <p>Try on clothes virtually from the comfort of your home.</p> -->
+            <a href="/products" class="cta-button">Start Your Virtual Try-On</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why Choose Our Virtual Try-On?</h2>
+        <div class="feature-list">
+            <div class="feature-item">
+                <h3>Realistic Fit</h3>
+                <p>See how clothes fit your body with accurate 3D modeling.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Wide Selection</h3>
+                <p>Choose from hundreds of styles and brands updated regularly.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Easy to Use</h3>
+                <p>User-friendly interface for a seamless shopping experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <ol>
+            <li>Upload your photo or use your webcam.</li>
+            <li>Select the clothes you want to try on.</li>
+            <li>See the virtual fitting in real-time.</li>
+            <li>Purchase your favorite items with confidence.</li>
+        </ol>
+    </section>
+
+    <!-- Products Preview Section -->
+    <section class="products-preview">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='shirts/shirt1.png') }}" alt="Shirt 1">
+                <h3>Classic White Shirt</h3>
+                <p>Comfortable and stylish for any occasion.</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='shirts/shirt2.png') }}" alt="Shirt 2">
+                <h3>Casual Denim Shirt</h3>
+                <p>Perfect for a relaxed weekend look.</p>
+            </div>
+            <div class="product-item">
+                <img src="{{ url_for('static', filename='shirts/shirt3.png') }}" alt="Shirt 3">
+                <h3>Formal Blue Shirt</h3>
+                <p>Ideal for office and formal events.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Users Say</h2>
+        <blockquote>
+            "The virtual try-on feature helped me find the perfect fit without leaving my house!"
+            <br>- Sarah K.
+        </blockquote>
+        <blockquote>
+            "A game changer for online shopping. Highly recommend to everyone."
+            <br>- James L.
+        </blockquote>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 202 Virtual Try-On. All rights reserved.</p>
+        <p>Contact us: info@virtualtryon.com | Phone: +1 234 567 890</p>
+        <p>
+            <a href="#" class="footer-link">Privacy Policy</a> |
+            <a href="#" class="footer-link">Terms of Service</a> |
+            <a href="#" class="footer-link">Help</a>
+        </p>
+    </footer>
+</body>
 </html>

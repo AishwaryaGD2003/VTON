@@ -28,7 +28,7 @@ clothing_images = {
     "shirt9": "static/shirts/shirt9.png",
     "shirt10": "static/shirts/shirt10.png",
     "shirt11": "static/shirts/shirt11.png",
-    "shirt12": "static/shirts/shirt12.png",
+    "shirt12": "static/shirts/shirt12.png", 
     "shirt13":"static/shirts/shirt13.png",
 
 
@@ -39,6 +39,15 @@ clothing_images = {
     "dress5": "static/women/dress5.png",
     "dress6": "static/women/dress6.png",
     "dress7": "static/women/dress7.png",
+    "dress8": "static/women/dress8.png",
+    "dress9": "static/women/dress9.png",
+    "dress10": "static/women/dress10.png",
+    "dress11": "static/women/dress11.png",
+    "dress12": "static/women/dress12.png",
+    "dress13": "static/women/dress13.png",
+    "dress14": "static/women/dress14.png",
+
+
 
 }
 
