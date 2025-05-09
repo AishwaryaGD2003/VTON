@@ -5,5 +5,6 @@
 -> Show accuracy of cloth matching
 -> Notification of camera opening or selected cloth for users.
 -> after selection move to cart or something realted to cart operations
--> Make the appearance of python screen to full window.
+-> Make the appearance of python screen to full window. -->(DONE)
+-> Gender Detection -->(DONE)
 -> Size predication by recognizing the body structure.

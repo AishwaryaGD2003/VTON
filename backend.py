@@ -1,4 +1,6 @@
 import cv2
+import cvlib as cv
+from cvlib.object_detection import draw_bbox
 import mediapipe as mp
 import numpy as np
 from flask import Flask, request, jsonify
@@ -53,8 +55,26 @@ size_factors = {"XS": 0.8, "S": 0.9, "M": 1.0, "L": 1.1, "XL": 1.2, "XXL": 1.3, 
 button_y_positions = {"XS": 50, "S": 100, "M": 150, "L": 200, "XL": 250, "XXL": 300, "XXXL": 350}
 button_radius = 40
 button_x = 50
-current_size = "M"
+current_size = "L"
 
+# Initialize gender prediction
+def get_gender(frame):
+    faces, confidences = cv.detect_face(frame)
+    gender = "Unknown"
+    for face in faces:
+        (startX, startY) = face[0], face[1]
+        (endX, endY) = face[2], face[3]
+        face_crop = frame[startY:endY, startX:endX]
+
+        label, confidence = cv.detect_gender(face_crop)
+        if label[0] == 'male':
+            gender = 'male'
+        else:
+            gender = 'female'
+    
+    return gender
+
+# Function to load image and get data
 def load_clothing_image(clothing_id):
     try:
         clothing_path = clothing_images.get(clothing_id)
@@ -63,7 +83,7 @@ def load_clothing_image(clothing_id):
             raise FileNotFoundError(f"Clothing image {clothing_path} not found!")
         original_height, original_width = clothing_img.shape[:2]
         aspect_ratio = original_height / original_width
-        print(f"Clothing {clothing_id} loaded. Shape: {clothing_img.shape}, Aspect Ratio: {aspect_ratio}")
+        # print(f"Clothing {clothing_id} loaded. Shape: {clothing_img.shape}, Aspect Ratio: {aspect_ratio}")
         return clothing_img, aspect_ratio
     except Exception as e:
         print(f"Error loading clothing image: {e}")
@@ -213,18 +233,18 @@ def overlay_clothing(frame, clothing_img, landmarks, size_factor, aspect_ratio, 
             excess = (top_left_y + clothing_height) - frame.shape[0]
             clothing_height = max(0, clothing_height - excess)
             resized_clothing = resized_clothing[:clothing_height, :]
-            print(f"Clipped height due to bottom boundary. New height: {clothing_height}")
+            # print(f"Clipped height due to bottom boundary. New height: {clothing_height}")
         if top_left_x + clothing_width > frame.shape[1]:
             excess = (top_left_x + clothing_width) - frame.shape[1]
             clothing_width = max(0, clothing_width - excess)
             resized_clothing = resized_clothing[:, :clothing_width]
-            print(f"Clipped width due to right boundary. New width: {clothing_width}")
+            # print(f"Clipped width due to right boundary. New width: {clothing_width}")
         if top_left_y < 0:
             excess = -top_left_y
             resized_clothing = resized_clothing[excess:, :]
             clothing_height -= excess
             top_left_y = 0
-            print(f"Clipped height due to top boundary. New top_y: {top_left_y}")
+            # print(f"Clipped height due to top boundary. New top_y: {top_left_y}")
         if top_left_x < 0:
             excess = -top_left_x
             resized_clothing = resized_clothing[:, excess:]
@@ -247,7 +267,7 @@ def overlay_clothing(frame, clothing_img, landmarks, size_factor, aspect_ratio, 
             for c in range(3):
                 roi[:, :, c] = roi[:, :, c] * (1 - alpha_mask) + clothing_rgb[:, :, c] * alpha_mask
             frame[top_left_y:top_left_y + clothing_height, top_left_x:top_left_x + clothing_width] = roi
-            print(f"Clothing {clothing_id} overlay successful! Final Position: Top-Left=({top_left_x}, {top_left_y}), Size: {clothing_width}x{clothing_height}")
+            # print(f"Clothing {clothing_id} overlay successful! Final Position: Top-Left=({top_left_x}, {top_left_y}), Size: {clothing_width}x{clothing_height}")
         else:
             print(f"Warning: Clothing {clothing_id} not overlaid due to invalid position or size. Final Position: ({top_left_x}, {top_left_y}), Size: {clothing_width}x{clothing_height}")
 
@@ -259,14 +279,14 @@ def overlay_clothing(frame, clothing_img, landmarks, size_factor, aspect_ratio, 
 @app.route('/start_tryon', methods=['POST'])
 def start_tryon():
     data = request.get_json()
-    print("Received request:", data)
+    # print("Received request:", data)
     clothing_id = data.get('shirt_id')
     if clothing_id not in clothing_images:
         print(f"Invalid clothing ID: {clothing_id}")
         return jsonify({"error": "Invalid clothing ID"}), 400
 
     clothing_img, aspect_ratio = load_clothing_image(clothing_id)
-    print(f"Starting try-on for {clothing_id}")
+    # print(f"Starting try-on for {clothing_id}")
 
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
@@ -276,7 +296,7 @@ def start_tryon():
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
-    print("Camera opened successfully")
+    # print("Camera opened successfully")
 
     global current_size
     window_name = f"Virtual Fitting Room - {clothing_id}"
@@ -287,7 +307,27 @@ def start_tryon():
         if not ret:
             print("Error: Failed to capture frame")
             break
+        # Detect face and gender
+        faces, confidences = cv.detect_face(frame)
 
+        for face in faces:
+            (startX, startY) = face[0], face[1]
+            (endX, endY) = face[2], face[3]
+
+            # Crop the face region
+            face_crop = frame[startY:endY, startX:endX]
+
+            if face_crop.shape[0] < 10 or face_crop.shape[1] < 10:
+                continue
+
+            # Predict gender
+            label, confidence = cv.detect_gender(face_crop)
+            gender = label[0]  # 'Male' or 'Female'
+            cv2.putText(frame, gender, (startX, startY - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (36,255,12), 2)
+
+
+        gender = get_gender(frame)
+        # print(f"Detected gender: {gender}")
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         pose_results = pose.process(frame_rgb)
         hand_results = hands.process(frame_rgb)
@@ -324,7 +364,7 @@ def start_tryon():
 
     cap.release()
     cv2.destroyAllWindows()
-    print(f"Try-on for {clothing_id} completed")
+    # print(f"Try-on for {clothing_id} completed")
     return jsonify({"status": "Try-on completed"}), 200
 
 if __name__ == '__main__':
