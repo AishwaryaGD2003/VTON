@@ -46,9 +46,6 @@ clothing_images = {
     "dress12": "static/women/dress12.png",
     "dress13": "static/women/dress13.png",
     "dress14": "static/women/dress14.png",
-
-
-
 }
 
 # Size scaling factors and button positions
@@ -197,16 +194,16 @@ def overlay_clothing(frame, clothing_img, landmarks, size_factor, aspect_ratio, 
 
         # Debug output
         print(f"Current size: {current_size}")
-        print(f"Left Shoulder: ({left_shoulder.x}, {left_shoulder.y})")
-        print(f"Right Shoulder: ({right_shoulder.x}, {right_shoulder.y})")
-        print(f"Left Hip: ({left_hip.x}, {left_hip.y})")
-        print(f"Right Hip: ({right_hip.x}, {right_hip.y})")
-        print(f"Shoulder Width: {shoulder_width:.2f} pixels")
-        print(f"Torso Height: {torso_height:.2f} pixels")
-        print(f"Expansion Factor: {expansion_factor}")
-        print(f"Torso Height Pixels (before cap): {torso_height_pixels}")
-        print(f"Resized Clothing: Width={clothing_width}, Height={clothing_height}")
-        print(f"Initial Clothing Position: Top-Left=({top_left_x}, {top_left_y})")
+        # print(f"Left Shoulder: ({left_shoulder.x}, {left_shoulder.y})")
+        # print(f"Right Shoulder: ({right_shoulder.x}, {right_shoulder.y})")
+        # print(f"Left Hip: ({left_hip.x}, {left_hip.y})")
+        # print(f"Right Hip: ({right_hip.x}, {right_hip.y})")
+        # print(f"Shoulder Width: {shoulder_width:.2f} pixels")
+        # print(f"Torso Height: {torso_height:.2f} pixels")
+        # print(f"Expansion Factor: {expansion_factor}")
+        # print(f"Torso Height Pixels (before cap): {torso_height_pixels}")
+        # print(f"Resized Clothing: Width={clothing_width}, Height={clothing_height}")
+        # print(f"Initial Clothing Position: Top-Left=({top_left_x}, {top_left_y})")
 
         # Resize clothing
         resized_clothing = cv2.resize(clothing_img, (clothing_width, clothing_height), interpolation=cv2.INTER_AREA)
@@ -273,14 +270,18 @@ def start_tryon():
 
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
-        print("Error: Could not open webcam")
         return jsonify({"error": "Could not open webcam"}), 500
 
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    # Set HD resolution
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+
     print("Camera opened successfully")
 
     global current_size
+    window_name = f"Virtual Fitting Room - {clothing_id}"
+    cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
+    cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
     while True:
         ret, frame = cap.read()
         if not ret:
