@@ -316,10 +316,7 @@ def start_tryon():
 
             # Crop the face region
             face_crop = frame[startY:endY, startX:endX]
-
-            if face_crop.shape[0] < 10 or face_crop.shape[1] < 10:
-                continue
-
+            
             # Predict gender
             label, confidence = cv.detect_gender(face_crop)
             gender = label[0]  # 'Male' or 'Female'
