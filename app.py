@@ -95,5 +95,41 @@ def register():
 
     return redirect(url_for('home'))
 
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    product_id = request.form.get('product_id')
+    if product_id not in shirts and product_id not in dresses:
+        flash("Invalid product selected.")
+        return redirect(url_for('products'))
+
+    product = shirts.get(product_id) or dresses.get(product_id)
+
+    cart = session.get('cart', {})
+    if product_id in cart:
+        cart[product_id]['quantity'] += 1
+    else:
+        cart[product_id] = {
+            'name': product['name'],
+            'price': product['price'],
+            'image': product['image'],
+            'quantity': 1
+        }
+
+    session['cart'] = cart
+    flash(f"{product['name']} added to cart!")
+    return redirect(url_for('products'))
+
+@app.route('/cart')
+def view_cart():
+    cart = session.get('cart', {})
+    total_price = 0
+
+    # Convert prices like "1000/-" to integers safely
+    for item in cart.values():
+        price = int(item['price'].replace("/-", "").replace("Rs.", "").strip())
+        total_price += price * item['quantity']
+
+    return render_template('cart.html', cart=cart, total=total_price)
+
 if __name__ == '__main__':
     app.run(debug=True, port=5003)
