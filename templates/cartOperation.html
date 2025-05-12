@@ -1,0 +1,14 @@
+<h2>Your Cart</h2>
+{% if cart %}
+    <ul>
+        {% for item_id, item in cart.items() %}
+            <li>
+                <img src="{{ url_for('static', filename='shirts/' + item.image) }}" width="50">
+                {{ item.name }} - {{ item.price }} x {{ item.quantity }}
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Total: ₹{{ total }}</p>
+{% else %}
+    <p>Your cart is empty.</p>
+{% endif %}
