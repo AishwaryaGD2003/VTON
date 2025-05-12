@@ -520,3 +520,67 @@ body1 {
     justify-content: center;
     align-items: center;
 }
+ /*Add to cart button*/
+
+.action-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    gap: 8px;
+}
+
+.add-cart-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  height: 50px; /* ensure consistent box height */
+}
+
+button.add-cart-btn{ 
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 4px 20px; /* this is the correct measurement but it is not displaying, but if i do same in inspect, it is showing the changes */
+    margin-top: 20px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.cart-icon {
+  width: 20px;
+  height: auto;
+  transform: scale(1.5);
+  margin-top: 2px; /* reduce spacing slightly to bring icon closer */
+}
+
+.add-cart-btn::before {
+  content: "Add";
+  display: block;
+  font-size: 13px;
+  line-height: 1;
+  margin-bottom: 1px; /* bring text slightly up */
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+
+.qty-input {
+    width: 50px;
+    padding: 6px;
+    font-size: 14px;
+    text-align: center;
+}
