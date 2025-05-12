@@ -25,6 +25,16 @@
                     <input type="hidden" name="shirt" value="{{ shirt_id }}">
                     <button type="submit">Try On</button>
                 </form>
+                <!-- Changes -->
+                <form method="POST" action="{{ url_for('add_to_cart') }}">
+                    <input type="hidden" name="product_id" value="{{ product_id }}">
+                    <div class="action-row">
+                        <button type="submit" class="add-cart-btn">
+                            <img src="{{ url_for('static', filename='images/cart.png') }}" alt="Add to Cart" class="cart-icon">
+                        </button>
+                        <input type="number" name="quantity" value="1" min="1" class="qty-input">
+                    </div>
+                </form>
             </div>
             {% endfor %}
         </div>
@@ -38,6 +48,17 @@
                 <form method="POST" action="{{ url_for('tryon') }}">
                     <input type="hidden" name="shirt" value="{{ dress_id }}">
                     <button type="submit">Try On</button>
+                </form>
+
+                <!-- Changes -->
+                <form method="POST" action="{{ url_for('add_to_cart') }}">
+                    <input type="hidden" name="product_id" value="{{ product_id }}">
+                    <div class="action-row">
+                        <button type="submit" class="add-cart-btn">
+                            <img src="{{ url_for('static', filename='images/cart.png') }}" alt="Add to Cart" class="cart-icon">
+                        </button>
+                        <input type="number" name="quantity" value="1" min="1" class="qty-input">
+                    </div>
                 </form>
             </div>
             {% endfor %}
