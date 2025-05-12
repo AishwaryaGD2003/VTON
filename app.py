@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
 app.secret_key = 'your_secret_key'  # Needed for session management
